@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Installing Dependencies
+      - name: Installing Dependenciesssss
         run: npm i
         
       - name: Running test cases
