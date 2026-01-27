@@ -1,31 +1,40 @@
 name: Integration
-
-on:
+'on':
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
-
+    branches:
+      - main
+  workflow_dispatch: null
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: "Installing Dependencies"
+      - name: Installing Dependencies
         run: npm i
-
-      - name: "Build command"
+      - name: Build command
         run: npm run build
-
-  unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: "Installing Dependencies"
-        run: npm i
-
-      - name: "Running test cases"
-        run: npm run test
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: null
+          path: null
+        Available Options: null
+        warn: Output a warning but do not fail the action
+        error: Fail the action with an error message
+        ignore: 'Do not output any warnings or errors, the action does not fail'
+        if-no-files-found: >-
+          Minimum 1 day. Maximum 90 days unless changed from the repository
+          settings page.
+        retention-days:
+          compression-level: null
+          overwrite: null
+          include-hidden-files: null
+        unit-tests: null
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - name: Installing Dependencies
+            run: npm i
